@@ -2,6 +2,7 @@ package br.com.zupacademy.lucas.casadocodigo.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import br.com.zupacademy.lucas.casadocodigo.controllers.validations.EmailExistsValidator;
 
 @Entity
 @Table(name = "autores")
@@ -23,6 +26,8 @@ public class Autor {
 	private String nome;
 	@NotBlank(message = "O email não pode ser vazio")
 	@Email(message = "Digite um email valido")
+	@EmailExistsValidator
+	@Column(unique = true)
 	private String email;
 	@NotBlank(message = "A descriçao não pode ser vazio")
 	@Size(max = 400, message = "A descrição tem que ter no máximo 400 caracteres")
