@@ -5,27 +5,28 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.zupacademy.lucas.casadocodigo.repository.AutorRepository;
+import br.com.zupacademy.lucas.casadocodigo.repository.CategoriaRepository;
 
-public class EmailExistsConstraint implements ConstraintValidator<EmailExistsValidator, String> {
-	
+public class NomeExistsConstraint implements ConstraintValidator<NomeExistsValidator, String>{
+
 	@Autowired
-	private AutorRepository repo;
+	private CategoriaRepository repo;
 	
 	@Override
-	public void initialize(EmailExistsValidator ann) {
+	public void initialize(NomeExistsValidator ann) {
 	}
 	
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		
-		if(repo.findByEmail(value) != null) {
+		if(repo.findByNome(value) != null) {
 			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate("Email já cadastrado.").addConstraintViolation();
+			context.buildConstraintViolationWithTemplate("Nome já cadastrado.").addConstraintViolation();
 			return false;
 		}
 		
 		return true;
 	}
-
+	
+	
+	
 }

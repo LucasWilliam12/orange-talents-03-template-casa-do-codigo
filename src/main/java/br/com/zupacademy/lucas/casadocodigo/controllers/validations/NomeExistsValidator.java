@@ -8,12 +8,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = EmailExistsConstraint.class)
+@Constraint(validatedBy = NomeExistsConstraint.class)
 @Target({ElementType.PARAMETER, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface EmailExistsValidator {
+public @interface NomeExistsValidator {
 	
-	String message () default "Email já cadastrado";
+	String message () default "Nome já cadastrado";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 	

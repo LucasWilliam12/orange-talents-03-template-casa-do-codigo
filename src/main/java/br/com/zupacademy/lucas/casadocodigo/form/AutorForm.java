@@ -22,7 +22,7 @@ public class AutorForm {
 	
 	// Construtores
 	public AutorForm(@NotBlank(message = "O nome não pode ser vazio") String nome,
-			@NotBlank(message = "O email não pode ser vazio") @Email(message = "Digite um email valido") String email,
+			@NotBlank(message = "O email não pode ser vazio") @EmailExistsValidator @Email(message = "Digite um email valido") String email,
 			@NotBlank(message = "A descriçao não pode ser vazio") @Size(max = 400, message = "A descrição tem que ter no máximo 400 caracteres") String descricao) {
 		this.nome = nome;
 		this.email = email;

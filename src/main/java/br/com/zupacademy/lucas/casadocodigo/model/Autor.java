@@ -26,7 +26,6 @@ public class Autor {
 	private String nome;
 	@NotBlank(message = "O email não pode ser vazio")
 	@Email(message = "Digite um email valido")
-	@EmailExistsValidator
 	@Column(unique = true)
 	private String email;
 	@NotBlank(message = "A descriçao não pode ser vazio")
@@ -38,7 +37,7 @@ public class Autor {
 	public Autor() {
 	}
 
-	public Autor(@NotBlank String nome, @NotBlank @Email String email,@NotBlank @Size(max = 400) String descricao) {
+	public Autor(@NotBlank String nome, @NotBlank @Email @EmailExistsValidator String email,@NotBlank @Size(max = 400) String descricao) {
 		this.nome = nome;
 		this.email = email;
 		this.descricao = descricao;
