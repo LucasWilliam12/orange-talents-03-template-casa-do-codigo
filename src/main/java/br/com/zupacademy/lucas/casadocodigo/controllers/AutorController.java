@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import br.com.zupacademy.lucas.casadocodigo.dto.AutorDto;
 import br.com.zupacademy.lucas.casadocodigo.form.AutorForm;
 import br.com.zupacademy.lucas.casadocodigo.model.Autor;
 import br.com.zupacademy.lucas.casadocodigo.repository.AutorRepository;
@@ -26,12 +27,12 @@ public class AutorController {
 	
 	// EndPoints
 	@PostMapping
-	public ResponseEntity<Autor> cadastrar(@RequestBody @Valid AutorForm form){
+	public ResponseEntity<AutorDto> cadastrar(@RequestBody @Valid AutorForm form){
 		Autor autor = repo.save(form.toModel());
 
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(autor.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(autor);
+		return ResponseEntity.created(uri).body(new AutorDto(autor));
 	}
 	
 }
