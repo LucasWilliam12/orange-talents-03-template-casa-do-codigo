@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import br.com.zupacademy.lucas.casadocodigo.controllers.validations.NomeExistsValidator;
+import br.com.zupacademy.lucas.casadocodigo.controllers.validations.UniqueData;
 
 @Entity
 @Table(name = "categorias")
@@ -28,7 +28,7 @@ public class Categoria {
 		
 	}
 
-	public Categoria(@NotBlank(message = "O nome não pode ser vazio.") @NomeExistsValidator String nome) {
+	public Categoria(@NotBlank(message = "O nome não pode ser vazio.") @UniqueData(domainClass = Categoria.class, fildName = "nome", message="Nome já cadastrado.") String nome) {
 		this.nome = nome;
 	}
 	

@@ -12,7 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import br.com.zupacademy.lucas.casadocodigo.controllers.validations.EmailExistsValidator;
+import br.com.zupacademy.lucas.casadocodigo.controllers.validations.UniqueData;
 
 @Entity
 @Table(name = "autores")
@@ -37,7 +37,7 @@ public class Autor {
 	public Autor() {
 	}
 
-	public Autor(@NotBlank String nome, @NotBlank @Email @EmailExistsValidator String email,@NotBlank @Size(max = 400) String descricao) {
+	public Autor(@NotBlank String nome, @NotBlank @Email @UniqueData(domainClass = Autor.class, fildName = "email", message="Email já cadastrado.") String email,@NotBlank @Size(max = 400) String descricao) {
 		this.nome = nome;
 		this.email = email;
 		this.descricao = descricao;
