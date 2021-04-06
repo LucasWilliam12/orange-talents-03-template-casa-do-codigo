@@ -33,4 +33,12 @@ public class ControllerExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(dto);
 	}
 	
+	@ExceptionHandler(NotFoundException.class)
+	public ResponseEntity<StandardError> handleNotFound(NotFoundException exception){
+		StandardError err = new StandardError(exception.getMessage(), HttpStatus.NOT_FOUND.value(), System.currentTimeMillis());
+				
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+		
+	}
+	
 }

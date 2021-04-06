@@ -1,16 +1,21 @@
 package br.com.zupacademy.lucas.casadocodigo.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.zupacademy.lucas.casadocodigo.controllers.validations.UniqueData;
 
@@ -32,6 +37,10 @@ public class Autor {
 	@Size(max = 400, message = "A descrição tem que ter no máximo 400 caracteres")
 	private String descricao;
 	private LocalDate instante = LocalDate.now();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "autor")
+	List<Livro> livros = new ArrayList<>();
 	
 	// Construtores e sobrecargas
 	public Autor() {
@@ -64,4 +73,9 @@ public class Autor {
 		return instante;
 	}
 	
+	
+	// Setters
+	public void addLivro(Livro livro) {
+		this.livros.add(livro);
+	}
 }

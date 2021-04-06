@@ -28,7 +28,6 @@ public class UniqueDateConstraint implements ConstraintValidator<UniqueData, Str
 	
 	@Override
 	public boolean isValid(String value, ConstraintValidatorContext context) {
-		System.out.println(klass.getSimpleName());
 		Query query = em.createQuery("SELECT 1 FROM "+ klass.getSimpleName() +" WHERE "+field+"=:value");
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
