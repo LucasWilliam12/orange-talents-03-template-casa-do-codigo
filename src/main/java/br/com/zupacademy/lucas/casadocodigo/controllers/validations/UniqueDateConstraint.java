@@ -32,7 +32,7 @@ public class UniqueDateConstraint implements ConstraintValidator<UniqueData, Str
 		query.setParameter("value", value);
 		List<?> list = query.getResultList();
 		
-		Assert.state(list.size() <= 1, "Foi encontrado mais de um(a) "+klass.getName()+"com o mesmo atributo "+field);
+		Assert.state(list.size() <= 1, "Foi encontrado mais de um(a) "+klass.getSimpleName()+"com o mesmo atributo "+field);
 		
 		if(list.size() >= 1) {
 			context.disableDefaultConstraintViolation();
