@@ -9,7 +9,7 @@ import javax.validation.Payload;
 
 import java.lang.annotation.RetentionPolicy;
 
-@Constraint(validatedBy = UniqueDateConstraint.class)
+@Constraint(validatedBy = UniqueDataConstraint.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueData {

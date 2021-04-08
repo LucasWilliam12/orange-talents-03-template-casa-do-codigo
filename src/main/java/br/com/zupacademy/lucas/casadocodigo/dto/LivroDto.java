@@ -1,6 +1,6 @@
 package br.com.zupacademy.lucas.casadocodigo.dto;
 
-import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import br.com.zupacademy.lucas.casadocodigo.model.Livro;
 
@@ -11,7 +11,7 @@ public class LivroDto {
 	private Double preco;
 	private Integer paginas;
 	private String isbn;
-	private LocalDate publicacao;
+	private String publicacao;
 	private AutorDto autorDto;
 	private CategoriaDto categoriaDto;
 	
@@ -22,7 +22,7 @@ public class LivroDto {
 		this.preco = livro.getPreco();
 		this.paginas = livro.getPaginas();
 		this.isbn = livro.getIsbn();
-		this.publicacao = livro.getPublicacao();
+		this.publicacao = livro.getPublicacao().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		this.autorDto = new AutorDto(livro.getAutor());
 		this.categoriaDto = new CategoriaDto(livro.getCategoria());
 	}
@@ -49,7 +49,7 @@ public class LivroDto {
 		return isbn;
 	}
 
-	public LocalDate getPublicacao() {
+	public String getPublicacao() {
 		return publicacao;
 	}
 

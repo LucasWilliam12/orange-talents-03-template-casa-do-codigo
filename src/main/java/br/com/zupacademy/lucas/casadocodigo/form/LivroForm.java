@@ -99,8 +99,8 @@ public class LivroForm {
 	}
 
 	// Metodos Auxiliares
-	public Livro toModel(LivroForm form, Categoria categoria, Autor autor) {
-		Livro livro = new Livro(form.getTitulo(), form.getResumo(), form.getPreco(), form.getPaginas(), form.getIsbn(), form.getPublicacao(), autor, categoria);
+	public Livro toModel(Categoria categoria, Autor autor) {
+		Livro livro = new Livro(this.titulo, this.resumo, this.preco, this.paginas, this.isbn, this.publicacao, autor, categoria);
 		categoria.addLivro(livro);
 		autor.addLivro(livro);
 		

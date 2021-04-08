@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.springframework.util.Assert;
 
-public class UniqueDateConstraint implements ConstraintValidator<UniqueData, String>{
+public class UniqueDataConstraint implements ConstraintValidator<UniqueData, String>{
 
 	private String message;
 	private String field;

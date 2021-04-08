@@ -42,7 +42,7 @@ public class CadastrarLivroController {
 		Autor autor = autorRepo.findById(form.getIdCategoria())
 				.orElseThrow(() -> new NotFoundException("Autor informado não encontrado!"));
 
-		Livro livro = livroRepo.save(form.toModel(form, categoria, autor));
+		Livro livro = livroRepo.save(form.toModel(categoria, autor));
 		autorRepo.save(autor);
 		categoriaRepo.save(categoria);
 

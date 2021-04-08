@@ -41,4 +41,12 @@ public class ControllerExceptionHandler {
 		
 	}
 	
+	@ExceptionHandler(ObjectExistsException.class)
+	public ResponseEntity<StandardError> handleObjectExists(ObjectExistsException exception){
+		StandardError err = new StandardError(exception.getMessage(), HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
+				
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
+		
+	}
+	
 }
