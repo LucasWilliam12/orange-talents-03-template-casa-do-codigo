@@ -19,12 +19,19 @@ import br.com.zupacademy.lucas.casadocodigo.repository.CategoriaRepository;
 
 @RestController
 @RequestMapping(value = "/categorias")
+// carga intrínseca = 4
+// Controller 100% coeso
 public class CategoriaController {
 	
 	@Autowired
 	private CategoriaRepository repo;
 	
 	@PostMapping
+	// 1 - CategoriaForm
+	// 2 - CategoriaDto
+	// 3 - ServletUriComponentsBuilder
+	// 4 - Categoria 
+	// total carga intrínseca = 4
 	public ResponseEntity<CategoriaDto> cadastrar(@RequestBody @Valid CategoriaForm form){
 		Categoria cat = repo.save(form.toModel());
 		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(cat.getId()).toUri();

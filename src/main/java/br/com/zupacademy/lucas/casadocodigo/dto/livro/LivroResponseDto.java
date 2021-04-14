@@ -1,4 +1,4 @@
-package br.com.zupacademy.lucas.casadocodigo.dto;
+package br.com.zupacademy.lucas.casadocodigo.dto.livro;
 
 import br.com.zupacademy.lucas.casadocodigo.model.Livro;
 

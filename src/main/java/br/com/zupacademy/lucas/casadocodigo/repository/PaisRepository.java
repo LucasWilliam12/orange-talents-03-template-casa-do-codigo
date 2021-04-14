@@ -17,4 +17,7 @@ public interface PaisRepository extends JpaRepository<Pais, Long>{
 	@Query(value = "SELECT p FROM Pais p INNER JOIN Estado e ON p.id = e.pais WHERE LOWER(e.nome) = LOWER(:nome) AND p.id = :idPais")
 	Optional<Pais> findByEstadosNome(@Param("nome") String nome, @Param("idPais") Long idPais);
 	
+	@Transactional(readOnly = true)
+	@Query(value = "SELECT p FROM Pais p INNER JOIN Estado e ON p.id = e.pais WHERE e.id = :idEstado AND p.id = :idPais")
+	Optional<Pais> findByEstadoAndPaisId(@Param("idEstado") Long idEstado, @Param("idPais") Long idPais);
 }

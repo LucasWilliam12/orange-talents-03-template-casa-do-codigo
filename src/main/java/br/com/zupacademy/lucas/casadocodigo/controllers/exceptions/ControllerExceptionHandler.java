@@ -20,13 +20,13 @@ public class ControllerExceptionHandler {
 	private MessageSource messageSource;
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<List<ErrorValidationForm>> handle(MethodArgumentNotValidException exception) {
-		List<ErrorValidationForm> dto = new ArrayList<>();
+	public ResponseEntity<List<ErrorValidationDto>> handle(MethodArgumentNotValidException exception) {
+		List<ErrorValidationDto> dto = new ArrayList<>();
 		
 		List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 		fieldErrors.forEach(e -> {
 			String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-			ErrorValidationForm erro = new ErrorValidationForm(e.getField(), mensagem);
+			ErrorValidationDto erro = new ErrorValidationDto(e.getField(), mensagem);
 			dto.add(erro);
 		});
 		
@@ -38,6 +38,14 @@ public class ControllerExceptionHandler {
 		StandardError err = new StandardError(exception.getMessage(), HttpStatus.NOT_FOUND.value(), System.currentTimeMillis());
 				
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+		
+	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<StandardError> handleIllegalArgument(IllegalArgumentException exception){
+		StandardError err = new StandardError(exception.getMessage(), HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
+				
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
 		
 	}
 	

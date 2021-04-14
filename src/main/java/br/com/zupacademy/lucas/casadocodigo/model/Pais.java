@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "paises")
 public class Pais {
@@ -26,6 +28,10 @@ public class Pais {
 	
 	@OneToMany(mappedBy = "pais")
 	private List<Estado> estados = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "pais")
+	private List<Cliente> clientes = new ArrayList<>();
 	
 	// Construtores
 	@Deprecated
@@ -45,8 +51,20 @@ public class Pais {
 		return nome;
 	}
 	
+	public List<Estado> getEstados() {
+		return estados;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
 	public void addEstado(Estado estado) {
 		this.estados.add(estado);
+	}
+	
+	public void addCliente(Cliente cliente) {
+		this.clientes.add(cliente);
 	}
 	
 }

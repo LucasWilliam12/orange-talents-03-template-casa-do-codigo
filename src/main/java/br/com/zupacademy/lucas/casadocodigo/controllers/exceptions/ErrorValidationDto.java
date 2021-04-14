@@ -1,6 +1,6 @@
 package br.com.zupacademy.lucas.casadocodigo.controllers.exceptions;
 
-public class ErrorValidationForm {
+public class ErrorValidationDto {
 	
 	// Atributos
 	private String campo;
@@ -8,7 +8,7 @@ public class ErrorValidationForm {
 
 	
 	// Construtor
-	public ErrorValidationForm(String campo, String erro) {
+	public ErrorValidationDto(String campo, String erro) {
 		this.campo = campo;
 		this.erro = erro;
 	}

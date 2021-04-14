@@ -3,8 +3,10 @@ package br.com.zupacademy.lucas.casadocodigo.form;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import br.com.zupacademy.lucas.casadocodigo.controllers.exceptions.NotFoundException;
 import br.com.zupacademy.lucas.casadocodigo.model.Estado;
 import br.com.zupacademy.lucas.casadocodigo.model.Pais;
+import br.com.zupacademy.lucas.casadocodigo.repository.PaisRepository;
 
 public class EstadoForm {
 	
@@ -37,9 +39,13 @@ public class EstadoForm {
 	}
 
 	// Métodos auxiliares
-	public Estado toModel(Pais pais) {
+	public Estado toModel(PaisRepository paisRepository) {
+		
+		Pais pais = paisRepository.findById(this.idPais).orElseThrow(() -> new NotFoundException("O país com o id informado não foi encontrado"));
+		
 		Estado estado = new Estado(this.nome, pais);
 		pais.addEstado(estado);
+		
 		return estado;
 	}
 

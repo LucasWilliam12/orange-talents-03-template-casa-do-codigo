@@ -1,7 +1,9 @@
-package br.com.zupacademy.lucas.casadocodigo.dto;
+package br.com.zupacademy.lucas.casadocodigo.dto.livro;
 
 import java.time.format.DateTimeFormatter;
 
+import br.com.zupacademy.lucas.casadocodigo.dto.CategoriaDto;
+import br.com.zupacademy.lucas.casadocodigo.dto.autor.AutorDto;
 import br.com.zupacademy.lucas.casadocodigo.model.Livro;
 
 public class LivroDto {

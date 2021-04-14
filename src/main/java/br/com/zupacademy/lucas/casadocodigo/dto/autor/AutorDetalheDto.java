@@ -1,18 +1,20 @@
-package br.com.zupacademy.lucas.casadocodigo.dto;
+package br.com.zupacademy.lucas.casadocodigo.dto.autor;
 
 import br.com.zupacademy.lucas.casadocodigo.model.Autor;
 
-public class AutorDto {
+public class AutorDetalheDto {
 
 	// Atributos
 	private String nome;
-	private String email;
 	private String descricao;
-	
-	// Construtor 
-	public AutorDto(Autor autor) {
+
+	// Construtores
+	@Deprecated
+	public AutorDetalheDto() {
+	}
+
+	public AutorDetalheDto(Autor autor) {
 		this.nome = autor.getNome();
-		this.email = autor.getEmail();
 		this.descricao = autor.getDescricao();
 	}
 
@@ -20,11 +22,8 @@ public class AutorDto {
 	public String getNome() {
 		return nome;
 	}
-	public String getEmail() {
-		return email;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}
-	
 }

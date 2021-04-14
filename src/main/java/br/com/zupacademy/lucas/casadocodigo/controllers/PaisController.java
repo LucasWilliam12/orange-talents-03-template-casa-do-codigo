@@ -19,18 +19,26 @@ import br.com.zupacademy.lucas.casadocodigo.repository.PaisRepository;
 
 @RestController
 @RequestMapping(value = "/paises")
+// Carga Intrínseca = 4
+// Controller 100% coeso
 public class PaisController {
-	
+
 	@Autowired
 	private PaisRepository repo;
-	
+
 	@PostMapping
-	public ResponseEntity<PaisDto> cadastrar(@RequestBody @Valid PaisForm form){
+	// 1 - PaisDto
+	// 2 - PaisForm
+	// 3 - Pais
+	// 4 - ServletUriComponentsBuilder
+	// total carga intrínseca = 4
+	public ResponseEntity<PaisDto> cadastrar(@RequestBody @Valid PaisForm form) {
 		Pais pais = repo.save(form.toModel());
-		
-		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(pais.getId()).toUri();
-		
+
+		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/{id}").buildAndExpand(pais.getId())
+				.toUri();
+
 		return ResponseEntity.created(uri).body(new PaisDto(pais));
 	}
-	
+
 }

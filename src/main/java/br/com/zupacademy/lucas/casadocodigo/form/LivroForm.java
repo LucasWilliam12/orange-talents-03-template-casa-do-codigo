@@ -13,10 +13,13 @@ import org.hibernate.validator.constraints.Length;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+import br.com.zupacademy.lucas.casadocodigo.controllers.exceptions.NotFoundException;
 import br.com.zupacademy.lucas.casadocodigo.controllers.validations.UniqueData;
 import br.com.zupacademy.lucas.casadocodigo.model.Autor;
 import br.com.zupacademy.lucas.casadocodigo.model.Categoria;
 import br.com.zupacademy.lucas.casadocodigo.model.Livro;
+import br.com.zupacademy.lucas.casadocodigo.repository.AutorRepository;
+import br.com.zupacademy.lucas.casadocodigo.repository.CategoriaRepository;
 
 public class LivroForm {
 	
@@ -99,8 +102,16 @@ public class LivroForm {
 	}
 
 	// Metodos Auxiliares
-	public Livro toModel(Categoria categoria, Autor autor) {
+	public Livro toModel(CategoriaRepository categoriaRepo, AutorRepository autorRepo) {
+		
+		Categoria categoria = categoriaRepo.findById(this.idCategoria)
+				.orElseThrow(() -> new NotFoundException("Categoria informada não encontrada!"));
+		
+		Autor autor = autorRepo.findById(this.idAutor)
+				.orElseThrow(() -> new NotFoundException("Autor informado não encontrado!"));
+		
 		Livro livro = new Livro(this.titulo, this.resumo, this.preco, this.paginas, this.isbn, this.publicacao, autor, categoria);
+		
 		categoria.addLivro(livro);
 		autor.addLivro(livro);
 		
